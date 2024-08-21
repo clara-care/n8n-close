@@ -1,0 +1,22 @@
+{
+  "node": "n8n-nodes-base.Close",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": [
+    "Sales",
+    "Marketing & Content",
+    "Communication"
+  ],
+  "resources": {
+    "credentialDocumentation": [
+      {
+        "url": ""
+      }
+    ],
+    "primaryDocumentation": [
+      {
+        "url": ""
+      }
+    ]
+  }
+}
