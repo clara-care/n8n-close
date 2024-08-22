@@ -40,10 +40,56 @@ export class Close implements INodeType {
 						value: 'lead',
 					},
 					{
-						name: 'Activity',
-						value: 'activities',
+						name: 'SMS',
+						value: 'sms',
 					},
 				],
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				default: 'getAll',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ['sms'],
+					},
+				},
+				options: [
+					{
+						name: 'Get Many',
+						value: 'getAll',
+						action: 'Fetch SMS messages',
+						description: 'Get SMS messages',
+						routing: {
+							request: {
+								method: 'GET',
+								url: '/activity/sms',
+							},
+						},
+					},
+				],
+			},
+			{
+				displayName: 'SMS Lead ID',
+				description: 'ID of the lead in Close who you want to fetch SMS for',
+				required: true,
+				name: 'smsLeadID',
+				type: 'string',
+				default: '',
+				displayOptions: {
+					show: {
+						resource: ['sms'],
+					},
+				},
+				routing: {
+					request: {
+						qs: {
+							lead_id: '={{$value}}',
+						},
+					},
+				},
 			},
 			{
 				displayName: 'Operation',
