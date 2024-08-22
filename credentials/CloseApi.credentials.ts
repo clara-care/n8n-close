@@ -1,7 +1,7 @@
 import { IAuthenticateGeneric, ICredentialType, INodeProperties } from 'n8n-workflow';
 
 export class CloseApi implements ICredentialType {
-	name = 'CloseApi';
+	name = 'closeApi';
 	displayName = 'Close CRM API';
 	properties: INodeProperties[] = [
 		{

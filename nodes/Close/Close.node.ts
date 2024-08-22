@@ -16,7 +16,7 @@ export class Close implements INodeType {
 		group: ['transform'],
 		credentials: [
 			{
-				name: 'CloseApi',
+				name: 'closeApi',
 				required: true,
 			},
 		],
