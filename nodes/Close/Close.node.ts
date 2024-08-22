@@ -69,11 +69,132 @@ export class Close implements INodeType {
 							},
 						},
 					},
+					{
+						name: 'Send',
+						value: 'send',
+						action: 'Send SMS message',
+						description: 'Send SMS message',
+						routing: {
+							request: {
+								method: 'POST',
+								url: '/activity/sms',
+								body: {
+									status: 'outbox',
+								},
+							},
+						},
+					},
 				],
 			},
 			{
+				displayName: 'SMS Text',
+				description: 'Text of the SMS you are sending',
+				required: true,
+				name: 'smsText',
+				type: 'string',
+				default: '',
+				displayOptions: {
+					show: {
+						resource: ['sms'],
+						operation: ['send'],
+					},
+				},
+				routing: {
+					request: {
+						body: {
+							text: '={{$value}}',
+						},
+					},
+				},
+			},
+			{
+				displayName: 'Send From',
+				description:
+					'Phone number to send from. Must exist in Close and start with country code (e.g. +1).',
+				required: true,
+				name: 'sendFrom',
+				type: 'string',
+				default: '',
+				displayOptions: {
+					show: {
+						resource: ['sms'],
+						operation: ['send'],
+					},
+				},
+				routing: {
+					request: {
+						body: {
+							local_phone: '={{$value}}',
+						},
+					},
+				},
+			},
+			{
+				displayName: 'Send To',
+				description: 'Phone number to send to. Must start with country code (e.g. +1).',
+				required: true,
+				name: 'sendTo',
+				type: 'string',
+				default: '',
+				displayOptions: {
+					show: {
+						resource: ['sms'],
+						operation: ['send'],
+					},
+				},
+				routing: {
+					request: {
+						body: {
+							remote_phone: '={{$value}}',
+						},
+					},
+				},
+			},
+			{
+				displayName: 'Lead ID',
+				description: 'ID of the lead to send to',
+				required: true,
+				name: 'leadId',
+				type: 'string',
+				default: '',
+				displayOptions: {
+					show: {
+						resource: ['sms'],
+						operation: ['send'],
+					},
+				},
+				routing: {
+					request: {
+						body: {
+							lead_id: '={{$value}}',
+						},
+					},
+				},
+			},
+			{
+				displayName: 'Contact ID',
+				description: 'ID of the contact to send to',
+				required: true,
+				name: 'contactId',
+				type: 'string',
+				default: '',
+				displayOptions: {
+					show: {
+						resource: ['sms'],
+						operation: ['send'],
+					},
+				},
+				routing: {
+					request: {
+						body: {
+							contact_id: '={{$value}}',
+						},
+					},
+				},
+			},
+			{
 				displayName: 'SMS Lead ID',
-				description: 'ID of the lead in Close who you want to fetch SMS for',
+				description: 'ID of the lead in Close',
 				required: true,
 				name: 'smsLeadID',
 				type: 'string',
@@ -81,6 +202,7 @@ export class Close implements INodeType {
 				displayOptions: {
 					show: {
 						resource: ['sms'],
+						operation: ['getAll'],
 					},
 				},
 				routing: {
